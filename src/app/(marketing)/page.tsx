@@ -36,7 +36,7 @@ export default async function IndexPage() {
                     href="/peoples"
                     className={cn(
                         buttonVariants({ size: "lg" }),
-                        "mt-32 bg-primary text-xl rounded-xl"
+                        "mt-32 bg-primary text-xl rounded-md"
                     )}
                 >
                     Profile

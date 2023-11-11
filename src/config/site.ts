@@ -7,7 +7,7 @@ export const siteConfig: SiteConfig = {
     url: "https://tx.rcsen.com",
     ogImage: "https://tx.rcsen.com/og.jpg",
     links: {
-        twitter: "https://twitter.com/rcsen",
-        github: "https://github.com/rcsen/",
+        twitter: "https://twitter.com/rohansen856",
+        github: "https://github.com/rohansen856/",
     },
 }

@@ -13,9 +13,9 @@ interface ProfileCardProps {
 
 export function ProfileCard({ name, lang }: ProfileCardProps) {
     return (
-        <div className="w-[250px] min-w-[250px] h-[400px] border-b border-white overflow-hidden">
-            <div className="w-full h-full mt-20 bg-slate-900 flex flex-col items-center border border-white">
-                <div className="rounded-full w-[120px] h-[120px] bg-white translate-y-[-60px] flex">
+        <div className="w-[250px] min-w-[250px] h-[400px] border-b border-slate-700 dark:border-white text-black dark:text-white overflow-hidden">
+            <div className="w-full h-full mt-20 bg-slate-600 dark:bg-slate-900 flex flex-col items-center border border-slate-700 dark:border-white">
+                <div className="rounded-full w-[120px] h-[120px] bg-slate-900 dark:bg-white translate-y-[-60px] flex">
                     <div className="m-auto rounded-full bg-slate-900 h-[115px] w-[115px] overflow-hidden">
                         <Avatar className="w-full h-full">
                             <AvatarImage
@@ -30,7 +30,7 @@ export function ProfileCard({ name, lang }: ProfileCardProps) {
                 <div className="translate-y-[-60px] w-full flex flex-col items-center px-2">
                     <h2 className="text-lg font-bold">{name}</h2>
                     <span
-                        className={`w-full ${styles.ring} ${
+                        className={`w-full relative ${styles.ring} ${
                             styles[profileColor[lang || "cpp"]]
                         }`}
                     >
@@ -39,34 +39,50 @@ export function ProfileCard({ name, lang }: ProfileCardProps) {
                         </p>
                     </span>
                     <span className="w-full h-8 rounded-3xl p-2 flex justify-around">
-                        <Image
-                            src="/c.svg"
-                            className="h-6 w-6"
-                            width={6}
-                            height={6}
-                            alt=""
-                        />
-                        <Image
-                            src="/cpp.svg"
-                            className="h-6 w-6"
-                            width={6}
-                            height={6}
-                            alt=""
-                        />
-                        <Image
-                            src="/java.svg"
-                            className="h-6 w-6"
-                            width={6}
-                            height={6}
-                            alt=""
-                        />
-                        <Image
-                            src="/typescript.svg"
-                            className="h-6 w-6"
-                            width={6}
-                            height={6}
-                            alt=""
-                        />
+                        <span
+                            className={`${styles.line} ${styles["neon_white"]}`}
+                        >
+                            <Image
+                                src="/c.svg"
+                                className="h-6 w-6"
+                                width={6}
+                                height={6}
+                                alt=""
+                            />
+                        </span>
+                        <span
+                            className={`${styles.line} ${styles["neon_purple"]}`}
+                        >
+                            <Image
+                                src="/cpp.svg"
+                                className="h-6 w-6"
+                                width={6}
+                                height={6}
+                                alt=""
+                            />
+                        </span>
+                        <span
+                            className={`${styles.line} ${styles["neon_red"]}`}
+                        >
+                            <Image
+                                src="/java.svg"
+                                className="h-6 w-6"
+                                width={6}
+                                height={6}
+                                alt=""
+                            />
+                        </span>
+                        <span
+                            className={`${styles.line} ${styles["neon_blue"]}`}
+                        >
+                            <Image
+                                src="/typescript.svg"
+                                className="h-6 w-6"
+                                width={6}
+                                height={6}
+                                alt=""
+                            />
+                        </span>
                     </span>
                 </div>
             </div>
