@@ -8,8 +8,10 @@ import {
     CreditCard,
     File,
     FileText,
+    Github,
     HelpCircle,
     Image,
+    Instagram,
     Laptop,
     Loader2,
     LucideProps,
@@ -23,8 +25,6 @@ import {
     Twitter,
     User,
     X,
-    Github,
-    Instagram,
 } from "lucide-react"
 
 export const Icons = {

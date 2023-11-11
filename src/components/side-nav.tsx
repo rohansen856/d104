@@ -9,8 +9,8 @@ const container = {
 
 export function SideNav({ className }: React.HTMLAttributes<HTMLElement>) {
     return (
-        <h1 className="font-heading m-auto text-7xl font-bold  h-full w-[150px] ml-[-150px] hidden md:flex transition-transform ease-out delay-700 translate-x-[150px]">
-            <span className="rotate-180 m-auto max-w-full">
+        <h1 className="m-auto ml-[-150px] hidden h-full  w-[150px] translate-x-[150px] font-heading text-7xl font-bold transition-transform delay-700 ease-out md:flex">
+            <span className="m-auto max-w-full rotate-180">
                 <p className="rotate-90">D104</p>
             </span>
             <Separator orientation="vertical" />

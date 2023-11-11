@@ -1,5 +1,5 @@
-import Link from "next/link"
 import Image from "next/image"
+import Link from "next/link"
 
 import { env } from "@/env.mjs"
 import { siteConfig } from "@/config/site"
@@ -11,9 +11,9 @@ import { TypeWriter } from "@/components/type-writer"
 export default async function IndexPage() {
     return (
         <>
-            <div className="w-full h-[80vh] z-[-20] fixed flex">
+            <div className="fixed z-[-20] flex h-[80vh] w-full">
                 <SideNav />
-                <div className="relative w-full h-full flex">
+                <div className="relative flex h-full w-full">
                     <Image
                         src="/mask.png"
                         alt="hecker"
@@ -23,12 +23,12 @@ export default async function IndexPage() {
                     />
                 </div>
             </div>
-            <section className="w-full md:pl-[150px] pt-24 md:pt-20 pl-0 overflow-hidden min-h-screen flex flex-col items-center">
+            <section className="flex min-h-screen w-full flex-col items-center overflow-hidden pl-0 pt-24 md:pl-[150px] md:pt-20">
                 <div className="flex flex-col items-center space-y-6">
-                    <h1 className="font-heading text-7xl sm:text-5xl md:text-6xl lg:text-7xl text-center bg-clip-text text-transparent animate-gradient">
+                    <h1 className="animate-gradient bg-clip-text text-center font-heading text-7xl text-transparent sm:text-5xl md:text-6xl lg:text-7xl">
                         The &nbsp;Heckers&nbsp;of&nbsp;IIITDMJ
                     </h1>
-                    <h2 className="max-w-[42rem] h-16 text-2xl sm:text-3xl md:text-3xl lg:text-3xl leading-normal text-muted-foreground sm:leading-8 bg-clip-text">
+                    <h2 className="h-16 max-w-[42rem] bg-clip-text text-2xl leading-normal text-muted-foreground sm:text-3xl sm:leading-8 md:text-3xl lg:text-3xl">
                         <TypeWriter />
                     </h2>
                 </div>
@@ -36,7 +36,7 @@ export default async function IndexPage() {
                     href="/peoples"
                     className={cn(
                         buttonVariants({ size: "lg" }),
-                        "mt-32 bg-primary text-xl rounded-md"
+                        "mt-32 rounded-md bg-primary text-xl"
                     )}
                 >
                     Profile

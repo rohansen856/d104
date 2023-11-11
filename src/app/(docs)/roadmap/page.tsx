@@ -30,8 +30,8 @@ const items = [
 
 export default function Component() {
     return (
-        <div className="flex flex-col w-full min-h-screen p-4 md:p-6 lg:p-8">
-            <h1 className="text-3xl font-bold mb-4">Roadmap</h1>
+        <div className="flex min-h-screen w-full flex-col p-4 md:p-6 lg:p-8">
+            <h1 className="mb-4 text-3xl font-bold">Roadmap</h1>
             {items ? (
                 <ul className="relative grid gap-4">
                     <div className="absolute left-6 mt-8 h-[calc(100%+2rem)] w-1 bg-blue-700"></div>
@@ -47,11 +47,11 @@ export default function Component() {
             ) : (
                 ""
             )}
-            <div className="flex items-center justify-between bg-white p-4 mt-4 rounded-lg shadow-md dark:bg-zinc-800">
+            <div className="mt-4 flex items-center justify-between rounded-lg bg-white p-4 shadow-md dark:bg-zinc-800">
                 <div className="flex items-center gap-4">
-                    <span className="w-5 h-5 rounded-full bg-blue-700"></span>
+                    <span className="h-5 w-5 rounded-full bg-blue-700"></span>
                     <svg
-                        className=" w-6 h-6 text-red-500 dark:text-red-400"
+                        className=" h-6 w-6 text-red-500 dark:text-red-400"
                         fill="none"
                         height="24"
                         stroke="currentColor"
@@ -73,7 +73,7 @@ export default function Component() {
                         </p>
                     </div>
                 </div>
-                <span className="text-sm font-medium bg-zinc-100 px-2 py-1 rounded-lg dark:bg-zinc-800">
+                <span className="rounded-lg bg-zinc-100 px-2 py-1 text-sm font-medium dark:bg-zinc-800">
                     Hard
                 </span>
             </div>

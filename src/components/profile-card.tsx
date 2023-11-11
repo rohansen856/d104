@@ -1,10 +1,8 @@
-import styles from "@/styles/profile-card.module.css"
-
 import Image from "next/image"
 
 import { profileColor } from "@/lib/profile-color"
-
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import styles from "@/styles/profile-card.module.css"
 
 interface ProfileCardProps {
     name?: string
@@ -13,11 +11,11 @@ interface ProfileCardProps {
 
 export function ProfileCard({ name, lang }: ProfileCardProps) {
     return (
-        <div className="w-[250px] min-w-[250px] h-[400px] border-b border-slate-700 dark:border-white text-black dark:text-white overflow-hidden">
-            <div className="w-full h-full mt-20 bg-slate-600 dark:bg-slate-900 flex flex-col items-center border border-slate-700 dark:border-white">
-                <div className="rounded-full w-[120px] h-[120px] bg-slate-900 dark:bg-white translate-y-[-60px] flex">
-                    <div className="m-auto rounded-full bg-slate-900 h-[115px] w-[115px] overflow-hidden">
-                        <Avatar className="w-full h-full">
+        <div className="h-[400px] w-[250px] min-w-[250px] overflow-hidden border-b border-slate-700 text-black dark:border-white dark:text-white">
+            <div className="mt-20 flex h-full w-full flex-col items-center border border-slate-700 bg-slate-600 dark:border-white dark:bg-slate-900">
+                <div className="flex h-[120px] w-[120px] translate-y-[-60px] rounded-full bg-slate-900 dark:bg-white">
+                    <div className="m-auto h-[115px] w-[115px] overflow-hidden rounded-full bg-slate-900">
+                        <Avatar className="h-full w-full">
                             <AvatarImage
                                 src="/sandip.jpeg"
                                 alt="@shadcn"
@@ -27,10 +25,10 @@ export function ProfileCard({ name, lang }: ProfileCardProps) {
                         </Avatar>
                     </div>
                 </div>
-                <div className="translate-y-[-60px] w-full flex flex-col items-center px-2">
+                <div className="flex w-full translate-y-[-60px] flex-col items-center px-2">
                     <h2 className="text-lg font-bold">{name}</h2>
                     <span
-                        className={`w-full relative ${styles.ring} ${
+                        className={`relative w-full ${styles.ring} ${
                             styles[profileColor[lang || "cpp"]]
                         }`}
                     >
@@ -38,7 +36,7 @@ export function ProfileCard({ name, lang }: ProfileCardProps) {
                             {lang?.toUpperCase()} Developer
                         </p>
                     </span>
-                    <span className="w-full h-8 rounded-3xl p-2 flex justify-around">
+                    <span className="flex h-8 w-full justify-around rounded-3xl p-2">
                         <span
                             className={`${styles.line} ${styles["neon_white"]}`}
                         >

@@ -6,11 +6,11 @@ interface RoadmapListProps {
 
 export function RoadmapList({ feature, status, difficulty }: RoadmapListProps) {
     return (
-        <li className="flex items-center justify-between bg-white p-4 rounded-lg shadow-md dark:bg-zinc-800">
+        <li className="flex items-center justify-between rounded-lg bg-white p-4 shadow-md dark:bg-zinc-800">
             <div className="flex items-center gap-4">
-                <span className="w-5 h-5 rounded-full bg-blue-700"></span>
+                <span className="h-5 w-5 rounded-full bg-blue-700"></span>
                 <svg
-                    className=" w-6 h-6 text-green-500 dark:text-green-400"
+                    className=" h-6 w-6 text-green-500 dark:text-green-400"
                     fill="none"
                     height="24"
                     stroke="currentColor"
@@ -31,7 +31,7 @@ export function RoadmapList({ feature, status, difficulty }: RoadmapListProps) {
                     </p>
                 </div>
             </div>
-            <span className="text-sm font-medium bg-zinc-100 px-2 py-1 rounded-lg dark:bg-zinc-800">
+            <span className="rounded-lg bg-zinc-100 px-2 py-1 text-sm font-medium dark:bg-zinc-800">
                 Easy
             </span>
         </li>

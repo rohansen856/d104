@@ -67,7 +67,9 @@
 
 .ring {
     border: 2px solid var(--neon);
-    box-shadow: 0 0 50px var(--neon-glow), inset 0 0 50px var(--neon-glow);
+    box-shadow:
+        0 0 50px var(--neon-glow),
+        inset 0 0 50px var(--neon-glow);
     box-sizing: border-box;
 }
 
