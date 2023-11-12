@@ -8,8 +8,9 @@ const useLocalStorage = <T>(
 
   useEffect(() => {
     // Retrieve from localStorage
-    const item = window.localStorage.getItem(key);
+    const item = window.localStorage.getItem(key) as string | null;
     if (item) {
+      // @ts-ignore
       setStoredValue(JSON.parse(item));
     }
   }, [key]);
