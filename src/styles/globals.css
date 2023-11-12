@@ -78,19 +78,6 @@
     }
 }
 
-@font-face {
-font-family: "Virgil";
-    src: url("https://excalidraw.com/Virgil.woff2");
-}
-@font-face {
-    font-family: "Cascadia";
-    src: url("https://excalidraw.com/Cascadia.woff2");
-}
-@font-face {
-    font-family: "Assistant";
-    src: url("https://excalidraw.com/Assistant-Regular.woff2");
-}
-
 .animate-gradient {
     background-image: linear-gradient(to left, #2af598, #009efd, #2af598);
     background-size: 200% 100%;
