@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 
 import { cn } from "@/lib/utils"
-import { insertUserSchema, selectUserSchema } from "@/lib/validation"
+import { insertUserSchema } from "@/lib/validation"
 import { buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -36,32 +36,44 @@ export function UserAuthForm({
     const router = useRouter()
 
     async function onSubmit(data: FormData) {
-        console.log(data)
         setIsLoading(true)
 
-        const signInResult = await fetch("/api/auth", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json", // Modify the content type as needed
-            },
-            body: JSON.stringify({ action, ...data }), // Convert the data to JSON string
-        })
-        console.log(signInResult)
+        const signInResult =
+            action === "register"
+                ? await fetch("/api/auth", {
+                      method: "POST",
+                      headers: {
+                          "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({ action, ...data }),
+                  })
+                : await fetch(
+                      `/api/auth?email=${data.email}&password=${data.password}`,
+                      {
+                          method: "GET",
+                      }
+                  )
         setIsLoading(false)
+        console.log(signInResult)
 
         if (!signInResult?.ok) {
             return toast({
-                title: "Something went wrong.",
+                title: "Email or Password wrong.",
                 description: "Your sign in request failed. Please try again.",
                 variant: "destructive",
             })
         }
 
-        toast({
-            title: "Account CreationSuccesful",
-            description: "Registering has succeded",
-        })
-        return router.push("/peoples")
+        action === "register"
+            ? toast({
+                  title: "Account Creation Succesful",
+                  description: "Registering has succeded",
+              })
+            : toast({
+                  title: "Login Successful",
+                  description: "You have successfully logged in.",
+              })
+        return router.push("/dashboard")
     }
 
     return (

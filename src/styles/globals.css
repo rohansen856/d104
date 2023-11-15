@@ -93,3 +93,17 @@
         background-position: 0 0;
     }
 }
+
+.animate-entry {
+    animation: entryAnimation 1s linear;
+    animation-timing-function: ease-out;
+}
+
+@keyframes entryAnimation {
+    0% {
+        transform: translateX(-150px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

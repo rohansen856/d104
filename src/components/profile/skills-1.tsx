@@ -1,8 +1,10 @@
 import Image from "next/image"
 
-const skills: string[] = ["typescript", "javascript", "java", "react", "cpp"]
+interface SkillsProps {
+    skills: string[]
+}
 
-export function Skills() {
+export function Skills(props: SkillsProps) {
     return (
         <section
             className="mb-16 mt-6 flex w-full flex-col items-center"
@@ -12,9 +14,9 @@ export function Skills() {
             <h3 className="mb-12 w-full py-3 text-center text-3xl font-bold lg:text-4xl">
                 Skills
             </h3>
-            {skills.length > 0 ? (
+            {props.skills.length > 0 ? (
                 <div className="grid w-full max-w-[500px] grid-cols-3 place-items-center">
-                    {skills.map((i) => (
+                    {props.skills.map((i) => (
                         <div className="m-6 h-20 w-20">
                             <Image
                                 src={`/${i}.svg`}

@@ -1,6 +1,11 @@
-interface HomeProps {}
+interface HomeProps {
+    name: string
+    job: string
+    description: string
+    image: string
+}
 
-export function Home({}) {
+export function Home(props: HomeProps) {
     return (
         <section
             className="flex h-[80vh] w-full flex-col items-center justify-around lg:h-screen lg:flex-row-reverse lg:justify-center lg:pb-[20vh]"
@@ -27,22 +32,20 @@ export function Home({}) {
                     </clipPath>
                     <image
                         clipPath="url(#clip-path)"
-                        href="/sandip.jpeg"
+                        href={props.image}
                         className="h-full"
                     />
                 </svg>
             </div>
             <div className="flex h-1/2 w-full flex-col items-center lg:h-full lg:w-[40%] lg:justify-center">
                 <h2 className="font-heading text-4xl font-bold text-foreground lg:text-5xl">
-                    Hi, I am Rohan
+                    Hi, I am {props.name}
                 </h2>
                 <h3 className="mb-12 text-lg font-bold text-primary opacity-40">
-                    Web Developer
+                    {props.job}
                 </h3>
                 <p className="mb-8 px-6 text-center lg:mb-16">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Mollitia, enim.{" "}
+                    {props.description}{" "}
                 </p>
                 <svg
                     version="1.1"
