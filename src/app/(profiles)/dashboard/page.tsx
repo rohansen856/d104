@@ -1,7 +1,7 @@
+import { DashboardInfo } from "@/components/dashboard-info"
 import { DashboardSidebar } from "@/components/dashboard-sidebar"
-import { NoProfile } from "@/components/no-profile"
 
-export default function Dashboard() {
+export default async function Dashboard() {
     return (
         <main className="flex min-h-[80vh] w-full">
             <DashboardSidebar />
@@ -9,7 +9,7 @@ export default function Dashboard() {
                 <h1 className="3xl:text-5xl text-lg underline lg:text-2xl">
                     Build Your Portfolio With Minimal Steps
                 </h1>
-                <NoProfile />
+                <DashboardInfo />
             </section>
         </main>
     )

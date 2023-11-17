@@ -73,6 +73,7 @@ export async function GET(req: Request) {
         if (result && result[0].id) {
             cookies().set("email", result[0].email)
             cookies().set("password", result[0].password)
+            cookies().set("id", result[0].id.toString())
             return new Response(null, { status: 200 })
         }
 
