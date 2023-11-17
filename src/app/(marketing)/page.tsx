@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import { cn } from "@/lib/utils"
+import { absoluteUrl, cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { SideNav } from "@/components/side-nav"
 import { TypeWriter } from "@/components/type-writer"
@@ -32,7 +32,7 @@ export default async function IndexPage() {
                     </h2>
                 </div>
                 <Link
-                    href="/peoples"
+                    href={absoluteUrl("/peoples")}
                     className={cn(
                         buttonVariants({ size: "lg" }),
                         "mt-32 rounded-md bg-primary text-xl"

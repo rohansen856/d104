@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
-import { cn } from "@/lib/utils"
+import { absoluteUrl, cn } from "@/lib/utils"
 import { insertUserSchema } from "@/lib/validation"
 import { buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -67,13 +67,14 @@ export function UserAuthForm({
         action === "register"
             ? toast({
                   title: "Account Creation Succesful",
-                  description: "Registering has succeded",
+                  description:
+                      "Registering has succeded. Please login to continue",
               })
             : toast({
                   title: "Login Successful",
                   description: "You have successfully logged in.",
               })
-        return router.push("/dashboard")
+        return router.push(absoluteUrl("/dashboard"))
     }
 
     return (

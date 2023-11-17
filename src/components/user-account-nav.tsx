@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
+import { absoluteUrl } from "@/lib/utils"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -49,13 +50,17 @@ export function UserAccountNav({ user, logout }: UserAccountNavProps) {
                 </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                    <Link href="/dashboard">Dashboard</Link>
+                    <Link href={absoluteUrl("/dashboard")}>Dashboard</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <Link href="/dashboard/billing">Billing</Link>
+                    <Link href={absoluteUrl("/dashboard/billing")}>
+                        Billing
+                    </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <Link href="/dashboard/settings">Settings</Link>
+                    <Link href={absoluteUrl("/dashboard/settings")}>
+                        Settings
+                    </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
