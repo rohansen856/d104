@@ -15,7 +15,6 @@ export default async function MarketingLayout({
     children,
 }: MarketingLayoutProps) {
     const user = userData()
-    if (!user || !user.email || !user.password) return redirect("/login")
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -26,7 +25,7 @@ export default async function MarketingLayout({
                     <UserAccountNav
                         user={{
                             name: user.email,
-                            email: user.email,
+                            email: user.email as string,
                             image: "/sandip.jpeg",
                         }}
                         logout={logOut}

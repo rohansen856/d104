@@ -24,9 +24,7 @@ export default async function MarketingLayout({
                     <nav>
                         <Link
                             href={
-                                user.id && user.email
-                                    ? "/login"
-                                    : "/dashboard</nav>"
+                                user.id && user.email ? "/login" : "/dashboard"
                             }
                             className={cn(
                                 buttonVariants({

@@ -28,7 +28,7 @@ const items = [
     },
 ]
 
-export default function Component() {
+export default async function Component() {
     return (
         <div className="flex min-h-screen w-full flex-col p-4 md:p-6 lg:p-8">
             <h1 className="mb-4 text-3xl font-bold">Roadmap</h1>

@@ -1,6 +1,6 @@
 import { ProfileCard } from "@/components/profile-card"
 
-export default function Peoples() {
+export default async function Peoples() {
     return (
         <div className="3xl:grid-cols-5 grid grid-cols-1 place-items-center items-center justify-center gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
             <ProfileCard name="Sayan Chakroborty" lang="java" />
