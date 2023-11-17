@@ -40,7 +40,7 @@ export function UserAuthForm({
 
         const signInResult =
             action === "register"
-                ? await fetch("/api/auth", {
+                ? await fetch(absoluteUrl("/api/auth"), {
                       method: "POST",
                       headers: {
                           "Content-Type": "application/json",
@@ -48,7 +48,9 @@ export function UserAuthForm({
                       body: JSON.stringify({ action, ...data }),
                   })
                 : await fetch(
-                      `/api/auth?email=${data.email}&password=${data.password}`,
+                      absoluteUrl(
+                          `/api/auth?email=${data.email}&password=${data.password}`
+                      ),
                       {
                           method: "GET",
                       }

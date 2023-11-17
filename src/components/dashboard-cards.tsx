@@ -1,15 +1,12 @@
 import Link from "next/link"
 
-import { cn } from "@/lib/utils"
+import { absoluteUrl, cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
 
 async function fetchData(page: string, id: string) {
-    return await fetch(
-        `http://localhost:3000/api/profile/${page.toLowerCase()}/${id}`,
-        {
-            method: "GET",
-        }
-    )
+    return await fetch(absoluteUrl(`/${page.toLowerCase()}/${id}`), {
+        method: "GET",
+    })
 }
 
 interface DashboardCardprops {
@@ -21,7 +18,6 @@ export async function DashboardCard({ page, id }: DashboardCardprops) {
     let active = false
     const data = await fetchData(page, id as string)
     if (data.ok) active = true
-    console.log(data)
 
     return (
         <div className="h-[150px] w-[350px] rounded-md border border-primary bg-secondary hover:scale-105">
