@@ -76,6 +76,7 @@ export const Icons = {
             viewBox="0 0 300.000000 176.000000"
             preserveAspectRatio="xMidYMid meet"
             className="h-16 w-16"
+            {...props}
         >
             <g
                 transform="translate(0.000000,176.000000) scale(0.100000,-0.100000)"

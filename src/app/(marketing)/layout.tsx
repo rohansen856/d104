@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { marketingConfig } from "@/config/marketing"
+import { userData } from "@/lib/auth"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { MainNav } from "@/components/main-nav"
@@ -13,6 +14,8 @@ interface MarketingLayoutProps {
 export default async function MarketingLayout({
     children,
 }: MarketingLayoutProps) {
+    const user = userData()
+
     return (
         <div className="flex min-h-screen flex-col">
             <header className="container z-40 bg-background">
@@ -20,7 +23,11 @@ export default async function MarketingLayout({
                     <MainNav items={marketingConfig.mainNav} />
                     <nav>
                         <Link
-                            href="/login"
+                            href={
+                                user.id && user.email
+                                    ? "/login"
+                                    : "/dashboard</nav>"
+                            }
                             className={cn(
                                 buttonVariants({
                                     variant: "secondary",
