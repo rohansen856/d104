@@ -19,7 +19,7 @@ interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
         image?: string
         email: string
     }
-    logout: () => void
+    logout?: () => void
 }
 
 export function UserAccountNav({ user, logout }: UserAccountNavProps) {
@@ -67,8 +67,8 @@ export function UserAccountNav({ user, logout }: UserAccountNavProps) {
                     className="cursor-pointer"
                     onSelect={(event) => {
                         event.preventDefault()
-                        logout()
-                        router.push("/login")
+                        // logout()
+                        router.push(absoluteUrl("/login"))
                     }}
                 >
                     Sign out

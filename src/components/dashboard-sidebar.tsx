@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
 
-import { cn } from "@/lib/utils"
+import { absoluteUrl, cn } from "@/lib/utils"
 
 export function DashboardSidebar() {
     const [current, setCurrent] = useState<string>("")
@@ -11,7 +11,7 @@ export function DashboardSidebar() {
     const pathName = usePathname()
 
     useEffect(() => {
-        router.push(`/dashboard/${current}`)
+        router.push(absoluteUrl(`/dashboard/${current}`))
     }, [current, router])
     console.log(pathName)
 
