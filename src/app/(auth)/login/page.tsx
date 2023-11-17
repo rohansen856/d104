@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export default async function LoginPage() {
     const user = userData()
-    if (user && user.email && user.password) return redirect("/dashboard")
+    if (user && user.email && user.password)
+        return redirect(absoluteUrl("/dashboard"))
 
     return (
         <div className="container flex h-screen w-screen flex-col items-center justify-center">
