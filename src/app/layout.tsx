@@ -25,6 +25,13 @@ interface RootLayoutProps {
     children: React.ReactNode
 }
 
+export const viewport = {
+    themeColor: [
+        { media: "(prefers-color-scheme: light)", color: "white" },
+        { media: "(prefers-color-scheme: dark)", color: "black" },
+    ],
+}
+
 export const metadata = {
     title: {
         default: siteConfig.name,
@@ -46,10 +53,6 @@ export const metadata = {
     ],
     creator: "rcsen",
     metadataBase: new URL(siteConfig.url),
-    themeColor: [
-        { media: "(prefers-color-scheme: light)", color: "white" },
-        { media: "(prefers-color-scheme: dark)", color: "black" },
-    ],
     openGraph: {
         type: "website",
         locale: "en_US",
