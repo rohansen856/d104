@@ -9,6 +9,7 @@ export default async function Peoples() {
             <ProfileCard name="Ritankar Saha" lang="c" />
             <ProfileCard name="Shreyansh Yadav" lang="c" />
             <ProfileCard name="Vaibhav Sahu" lang="cpp" />
+            <ProfileCard name="Om Thorat" lang="typescript" />
         </div>
     )
 }
