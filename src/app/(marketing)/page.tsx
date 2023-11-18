@@ -35,7 +35,7 @@ export default async function IndexPage() {
                     href={absoluteUrl("/peoples")}
                     className={cn(
                         buttonVariants({ size: "lg" }),
-                        "mt-32 rounded-md bg-primary text-xl"
+                        "mt-32 rounded bg-primary text-xl"
                     )}
                 >
                     Profile
