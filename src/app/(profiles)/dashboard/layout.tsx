@@ -1,7 +1,6 @@
-import { redirect } from "next/navigation"
-
 import { marketingConfig } from "@/config/marketing"
 import { userData } from "@/lib/auth"
+import { logOut } from "@/lib/logout"
 import { MainNav } from "@/components/main-nav"
 import { SiteFooter } from "@/components/site-footer"
 import { UserAccountNav } from "@/components/user-account-nav"
@@ -27,7 +26,7 @@ export default async function MarketingLayout({
                             email: user.email as string,
                             image: "/sandip.jpeg",
                         }}
-                        // logout={}
+                        logout={logOut}
                     />
                 </div>
             </header>

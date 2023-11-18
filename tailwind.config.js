@@ -5,8 +5,7 @@ module.exports = {
     content: [
         "./src/app/**/*.{ts,tsx}",
         "./src/components/**/*.{ts,tsx}",
-        "./src/ui/**/*.{ts,tsx}",
-        "./src/content/**/*.{md,mdx}",
+        "./src/components/ui/**/*.{ts,tsx}",
     ],
     darkMode: ["class"],
     theme: {

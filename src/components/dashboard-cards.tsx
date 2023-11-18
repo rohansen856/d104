@@ -37,7 +37,9 @@ export async function DashboardCard({ page, id }: DashboardCardprops) {
                                 buttonVariants({ variant: "destructive" }),
                                 "w-full rounded-md text-lg"
                             )}
-                            href={`/${page}`}
+                            href={absoluteUrl(
+                                `/dashboard/${page.toLowerCase()}`
+                            )}
                         >
                             Build
                         </Link>
