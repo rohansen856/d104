@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import * as React from "react"
+import { redirect, useSearchParams } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 
@@ -14,17 +15,11 @@ import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { Icons } from "@/components/icons"
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
-    action: "login" | "register"
-}
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 type FormData = z.infer<typeof insertUserSchema>
 
-export function UserAuthForm({
-    className,
-    action,
-    ...props
-}: UserAuthFormProps) {
+export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     const {
         register,
         handleSubmit,
@@ -32,51 +27,34 @@ export function UserAuthForm({
     } = useForm<FormData>({
         resolver: zodResolver(insertUserSchema),
     })
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const router = useRouter()
+    const [isLoading, setIsLoading] = React.useState<boolean>(false)
+    const [isGitHubLoading, setIsGitHubLoading] = React.useState<boolean>(false)
+    const searchParams = useSearchParams()
 
     async function onSubmit(data: FormData) {
         setIsLoading(true)
 
-        const signInResult =
-            action === "register"
-                ? await fetch(absoluteUrl("/api/auth"), {
-                      method: "POST",
-                      headers: {
-                          "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify({ action, ...data }),
-                  })
-                : await fetch(
-                      absoluteUrl(
-                          `/api/auth?email=${data.email}&password=${data.password}`
-                      ),
-                      {
-                          method: "GET",
-                      }
-                  )
+        const signInResult = await signIn("email", {
+            email: data.email.toLowerCase(),
+            redirect: false,
+            callbackUrl: searchParams?.get("from") || "/dashboard",
+        })
+
         setIsLoading(false)
-        console.log(signInResult)
 
         if (!signInResult?.ok) {
             return toast({
-                title: "Email or Password wrong.",
+                title: "Something went wrong.",
                 description: "Your sign in request failed. Please try again.",
                 variant: "destructive",
             })
         }
 
-        action === "register"
-            ? toast({
-                  title: "Account Creation Succesful",
-                  description:
-                      "Registering has succeded. Please login to continue",
-              })
-            : toast({
-                  title: "Login Successful",
-                  description: "You have successfully logged in.",
-              })
-        return router.push(absoluteUrl("/dashboard"))
+        return toast({
+            title: "Check your email",
+            description:
+                "We sent you a login link. Be sure to check your spam too.",
+        })
     }
 
     return (
@@ -94,7 +72,7 @@ export function UserAuthForm({
                             autoCapitalize="none"
                             autoComplete="email"
                             autoCorrect="off"
-                            disabled={isLoading}
+                            disabled={isLoading || isGitHubLoading}
                             {...register("email")}
                         />
                         {errors?.email && (
@@ -103,28 +81,8 @@ export function UserAuthForm({
                             </p>
                         )}
                     </div>
-                    <div className="grid gap-1">
-                        <Label className="sr-only" htmlFor="password">
-                            Password
-                        </Label>
-                        <Input
-                            id="password"
-                            placeholder=". . . . ."
-                            type="password"
-                            autoCapitalize="none"
-                            autoComplete="off"
-                            autoCorrect="off"
-                            disabled={isLoading}
-                            {...register("password")}
-                        />
-                        {errors?.password && (
-                            <p className="px-1 text-xs text-red-600">
-                                {errors.password.message}
-                            </p>
-                        )}
-                    </div>
                     <button
-                        className={cn(buttonVariants(), "mt-4")}
+                        className={cn(buttonVariants())}
                         disabled={isLoading}
                     >
                         {isLoading && (
@@ -134,6 +92,32 @@ export function UserAuthForm({
                     </button>
                 </div>
             </form>
+            <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-background px-2 text-muted-foreground">
+                        Or continue with
+                    </span>
+                </div>
+            </div>
+            <button
+                type="button"
+                className={cn(buttonVariants({ variant: "outline" }))}
+                onClick={() => {
+                    setIsGitHubLoading(true)
+                    signIn("github", { callbackUrl: absoluteUrl("/dashboard") })
+                }}
+                disabled={isLoading || isGitHubLoading}
+            >
+                {isGitHubLoading ? (
+                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                    <Icons.gitHub className="mr-2 h-4 w-4" />
+                )}{" "}
+                Github
+            </button>
         </div>
     )
 }

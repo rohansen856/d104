@@ -13,7 +13,6 @@ export function DashboardSidebar() {
     useEffect(() => {
         router.push(absoluteUrl(`/dashboard/${current}`))
     }, [current, router])
-    console.log(pathName)
 
     return (
         <section className="2xl:[w-350px] mx-2 hidden min-h-full w-0 flex-col overflow-x-hidden rounded-xl border border-secondary px-1 lg:flex lg:w-[300px]">

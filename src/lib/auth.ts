@@ -1,16 +1,36 @@
-import { cookies } from "next/headers"
+import { DrizzleAdapter } from "@auth/drizzle-adapter"
+import NextAuth, { NextAuthConfig } from "next-auth"
+import GitHub from "next-auth/providers/GitHub"
 
-interface userDataProps {
-    id: string | undefined
-    email: string | undefined
-    password: string | undefined
-}
+import { db } from "@/lib/db"
 
-export function userData(): userDataProps {
-    const data = {
-        id: cookies().get("id")?.value,
-        email: cookies().get("email")?.value,
-        password: cookies().get("password")?.value,
-    } as userDataProps
-    return data
-}
+export const authConfig = {
+    providers: [GitHub],
+    adapter: DrizzleAdapter(db),
+    callbacks: {
+        async session({ session, user }) {
+            session.user.id = user.id
+            return session
+        },
+        authorized({ auth, request: { nextUrl } }) {
+            const isLoggedIn = !!auth?.user
+            const paths = ["/dashboard"]
+            const isProtected = paths.some((path) =>
+                nextUrl.pathname.startsWith(path)
+            )
+
+            if (isProtected && !isLoggedIn) {
+                const redirectUrl = new URL("api/auth/signin", nextUrl.origin)
+                redirectUrl.searchParams.append("callbackUrl", nextUrl.href)
+                return Response.redirect(redirectUrl)
+            }
+
+            return true
+        },
+        async redirect({ url, baseUrl }) {
+            return url.startsWith(baseUrl) ? url : baseUrl + "/dashboard"
+        },
+    },
+} satisfies NextAuthConfig
+
+export const { handlers, auth, signOut } = NextAuth(authConfig)

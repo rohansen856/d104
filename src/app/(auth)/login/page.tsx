@@ -1,9 +1,7 @@
 import { Metadata } from "next"
 import Link from "next/link"
-import { redirect } from "next/navigation"
 
-import { userData } from "@/lib/auth"
-import { absoluteUrl, cn } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { UserAuthForm } from "@/components/user-auth-form"
@@ -13,15 +11,11 @@ export const metadata: Metadata = {
     description: "Login to your account",
 }
 
-export default async function LoginPage() {
-    const user = userData()
-    if (user && user.email && user.password)
-        return redirect(absoluteUrl("/dashboard"))
-
+export default function LoginPage() {
     return (
         <div className="container flex h-screen w-screen flex-col items-center justify-center">
             <Link
-                href={absoluteUrl("/")}
+                href="/"
                 className={cn(
                     buttonVariants({ variant: "ghost" }),
                     "absolute left-4 top-4 md:left-8 md:top-8"
@@ -42,10 +36,10 @@ export default async function LoginPage() {
                         Enter your email to sign in to your account
                     </p>
                 </div>
-                <UserAuthForm action="login" />
+                <UserAuthForm />
                 <p className="px-8 text-center text-sm text-muted-foreground">
                     <Link
-                        href={absoluteUrl("/register")}
+                        href="/register"
                         className="hover:text-brand underline underline-offset-4"
                     >
                         Don&apos;t have an account? Sign Up

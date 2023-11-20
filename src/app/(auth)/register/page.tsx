@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { absoluteUrl, cn } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { UserAuthForm } from "@/components/user-auth-form"
@@ -14,7 +14,7 @@ export default function RegisterPage() {
     return (
         <div className="container grid h-screen w-screen flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
             <Link
-                href={absoluteUrl("/login")}
+                href="/login"
                 className={cn(
                     buttonVariants({ variant: "ghost" }),
                     "absolute right-4 top-4 md:right-8 md:top-8"
@@ -34,18 +34,18 @@ export default function RegisterPage() {
                             Enter your email below to create your account
                         </p>
                     </div>
-                    <UserAuthForm action="register" />
+                    <UserAuthForm />
                     <p className="px-8 text-center text-sm text-muted-foreground">
                         By clicking continue, you agree to our{" "}
                         <Link
-                            href={absoluteUrl("/terms")}
+                            href="/terms"
                             className="hover:text-brand underline underline-offset-4"
                         >
                             Terms of Service
                         </Link>{" "}
                         and{" "}
                         <Link
-                            href={absoluteUrl("/privacy")}
+                            href="/privacy"
                             className="hover:text-brand underline underline-offset-4"
                         >
                             Privacy Policy

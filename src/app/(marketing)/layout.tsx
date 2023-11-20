@@ -1,7 +1,7 @@
 import Link from "next/link"
 
 import { marketingConfig } from "@/config/marketing"
-import { userData } from "@/lib/auth"
+import { auth } from "@/lib/auth"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { MainNav } from "@/components/main-nav"
@@ -14,7 +14,7 @@ interface MarketingLayoutProps {
 export default async function MarketingLayout({
     children,
 }: MarketingLayoutProps) {
-    const user = userData()
+    const session = await auth()
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -23,9 +23,7 @@ export default async function MarketingLayout({
                     <MainNav items={marketingConfig.mainNav} />
                     <nav>
                         <Link
-                            href={
-                                user.id && user.email ? "/login" : "/dashboard"
-                            }
+                            href={!session?.user ? "/login" : "/dashboard"}
                             className={cn(
                                 buttonVariants({
                                     variant: "secondary",

@@ -1,6 +1,8 @@
+import { redirect } from "next/navigation"
+
 import { marketingConfig } from "@/config/marketing"
-import { userData } from "@/lib/auth"
-import { logOut } from "@/lib/logout"
+import { auth, signOut } from "@/lib/auth"
+import { absoluteUrl } from "@/lib/utils"
 import { MainNav } from "@/components/main-nav"
 import { SiteFooter } from "@/components/site-footer"
 import { UserAccountNav } from "@/components/user-account-nav"
@@ -12,7 +14,9 @@ interface MarketingLayoutProps {
 export default async function MarketingLayout({
     children,
 }: MarketingLayoutProps) {
-    const user = userData()
+    const session = await auth()
+    if (!session?.user || !session.user.email)
+        return redirect(absoluteUrl("/login"))
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -22,11 +26,14 @@ export default async function MarketingLayout({
 
                     <UserAccountNav
                         user={{
-                            name: user.email,
-                            email: user.email as string,
-                            image: "/sandip.jpeg",
+                            name: session.user.name as string,
+                            email: session.user.email as string,
+                            image: session.user.image as string,
                         }}
-                        logout={logOut}
+                        logout={async () => {
+                            "use server"
+                            signOut({ redirectTo: absoluteUrl("/") })
+                        }}
                     />
                 </div>
             </header>

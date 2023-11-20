@@ -68,7 +68,6 @@ export function UserAccountNav({ user, logout }: UserAccountNavProps) {
                     onSelect={(event) => {
                         event.preventDefault()
                         logout()
-                        router.push(absoluteUrl("/login"))
                     }}
                 >
                     Sign out
