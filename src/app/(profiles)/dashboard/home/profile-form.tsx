@@ -101,20 +101,40 @@ interface ProfileFormProps {
     id: string
     data: {
         id: string
+        bio: string | null
+        mainSkill: string | null
+        secSkills: string[]
     }
 }
 
 export function ProfileForm({ id, data }: ProfileFormProps) {
-    const [name, setName] = useState<string | null>(data.id)
+    const [user, setUser] = useState<{
+        name: string
+        bio: string
+        mainSkill: string
+        secSkills: string[]
+    }>({
+        name: data.id,
+        bio: "",
+        mainSkill: "c",
+        secSkills: [],
+    })
 
     const form = useForm<ProfileFormValues>({
         resolver: zodResolver(profileFormSchema),
         defaultValues,
         mode: "onChange",
+        values: {
+            name: user.name,
+            bio: user.bio,
+            mainSkill: user.mainSkill,
+            secSkill: [],
+            urls: [],
+        },
     })
 
     async function onSubmit(data: ProfileFormValues) {
-        console.log(data)
+        console.log(user)
         return
         const retData = await axios.patch(
             absoluteUrl(`/api/profile/home/${id}`),
@@ -153,9 +173,11 @@ export function ProfileForm({ id, data }: ProfileFormProps) {
                                         <Input
                                             placeholder="your name"
                                             {...field}
-                                            value={data.id}
                                             onChange={(e) =>
-                                                setName(e.target.value)
+                                                setUser({
+                                                    ...user,
+                                                    name: e.target.value,
+                                                })
                                             }
                                         />
                                     </FormControl>
@@ -211,6 +233,11 @@ export function ProfileForm({ id, data }: ProfileFormProps) {
                                                                     "mainSkill",
                                                                     skill.value
                                                                 )
+                                                                setUser({
+                                                                    ...user,
+                                                                    mainSkill:
+                                                                        skill.value,
+                                                                })
                                                             }}
                                                         >
                                                             <CheckIcon
@@ -248,6 +275,12 @@ export function ProfileForm({ id, data }: ProfileFormProps) {
                                             placeholder="Tell us a little bit about yourself"
                                             className="resize-none"
                                             {...field}
+                                            onChange={(e) =>
+                                                setUser({
+                                                    ...user,
+                                                    bio: e.target.value,
+                                                })
+                                            }
                                         />
                                     </FormControl>
                                     <FormDescription>
