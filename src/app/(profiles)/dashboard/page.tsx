@@ -46,13 +46,10 @@ export default function DashboardPage() {
                                 <TabsTrigger value="overview">
                                     Overview
                                 </TabsTrigger>
-                                <TabsTrigger value="analytics" disabled>
-                                    Analytics
+                                <TabsTrigger value="friends" >
+                                    Friends
                                 </TabsTrigger>
-                                <TabsTrigger value="reports" disabled>
-                                    Reports
-                                </TabsTrigger>
-                                <TabsTrigger value="notifications" disabled>
+                                <TabsTrigger value="notifications" >
                                     Notifications
                                 </TabsTrigger>
                             </div>
@@ -93,7 +90,7 @@ export default function DashboardPage() {
                                 <Card>
                                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                         <CardTitle className="text-sm font-medium">
-                                            Subscriptions
+                                            Portfolio likes
                                         </CardTitle>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +109,7 @@ export default function DashboardPage() {
                                     </CardHeader>
                                     <CardContent>
                                         <div className="text-2xl font-bold">
-                                            +2350
+                                            +23
                                         </div>
                                         <p className="text-xs text-muted-foreground">
                                             +180.1% from last month
@@ -122,7 +119,7 @@ export default function DashboardPage() {
                                 <Card>
                                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                         <CardTitle className="text-sm font-medium">
-                                            Sales
+                                            Followers
                                         </CardTitle>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +143,7 @@ export default function DashboardPage() {
                                     </CardHeader>
                                     <CardContent>
                                         <div className="text-2xl font-bold">
-                                            +12,234
+                                            +12
                                         </div>
                                         <p className="text-xs text-muted-foreground">
                                             +19% from last month
@@ -156,7 +153,7 @@ export default function DashboardPage() {
                                 <Card>
                                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                         <CardTitle className="text-sm font-medium">
-                                            Active Now
+                                            Total Users
                                         </CardTitle>
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -191,15 +188,7 @@ export default function DashboardPage() {
                                     </CardContent>
                                 </Card>
                                 <Card className="col-span-3">
-                                    <CardHeader>
-                                        <CardTitle>Recent Sales</CardTitle>
-                                        <CardDescription>
-                                            You made 265 sales this month.
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <RecentViews />
-                                    </CardContent>
+                                    <RecentViews />
                                 </Card>
                             </div>
                         </TabsContent>
