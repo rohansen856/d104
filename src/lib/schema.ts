@@ -76,6 +76,6 @@ export const profile = pgTable("profile", {
     image: text("image"),
     mainSkill: text("main_skill"),
     secSkills: json("secondary_skills").$type<string[]>(),
-    social: json("social").$type<Array<{ [key: string]: string }>>(),
+    social: json("social").$type<string[]>(),
     createdAt: timestamp("created_at").notNull().defaultNow(),
 })

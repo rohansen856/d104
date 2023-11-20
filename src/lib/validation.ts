@@ -12,3 +12,5 @@ export const insertProfileSchema = createInsertSchema(profile, {
     secSkills: (schema) => schema.secSkills.array().default([]),
     social: (schema) => schema.social.array().default([]),
 })
+
+export const selectProfileSchema = createInsertSchema(profile)
