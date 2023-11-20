@@ -1,6 +1,6 @@
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
 import NextAuth, { NextAuthConfig } from "next-auth"
-import GitHub from "next-auth/providers/GitHub"
+import GitHub from "next-auth/providers/gitHub"
 
 import { db } from "@/lib/db"
 

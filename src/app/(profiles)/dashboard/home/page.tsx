@@ -25,7 +25,14 @@ export default async function SettingsProfilePage() {
             <div>
                 <ProfileForm
                     id={session.user.id}
-                    data={data as { id: string }}
+                    data={
+                        data as {
+                            id: string
+                            mainSkill: string
+                            secSkills: string[]
+                            bio: string
+                        }
+                    }
                 />
             </div>
             <div className="m-2 border border-secondary">
