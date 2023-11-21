@@ -8,8 +8,7 @@ import { Home } from "@/components/profile/home-1"
 import { ProfileForm } from "./profile-form"
 
 async function homeData(id: string) {
-    const { data } = await axios.patch(absoluteUrl(`/api/profile/home/${id}`))
-    console.log("data", data.status)
+    const { data } = await axios.get(absoluteUrl(`/api/profile/home/${id}`))
     return data
 }
 
@@ -18,29 +17,29 @@ export default async function SettingsProfilePage() {
     if (!session?.user || !session.user.id)
         return redirect(absoluteUrl("/login"))
 
-    const data = await homeData(session.user.id)
+    const data = (await homeData(session.user.id)) as {
+        id: string
+        name: string | null
+        image: string | null
+        mainSkill: string | null
+        secSkills: string[]
+        bio: string | null
+    }
 
     return (
-        <div className="flex w-full flex-col items-center justify-center lg:flex-row lg:items-start">
+        <div className="flex w-full flex-col items-center justify-center">
             <div>
-                <ProfileForm
-                    id={session.user.id}
-                    data={
-                        data as {
-                            id: string
-                            mainSkill: string
-                            secSkills: string[]
-                            bio: string
-                        }
-                    }
-                />
+                <ProfileForm id={session.user.id} data={data} />
             </div>
             <div className="m-2 border border-secondary">
                 <Home
-                    description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, tenetur?"
-                    image="/sandip.jpeg"
-                    job="Web Developer"
-                    name="Sandip"
+                    description={
+                        data.bio ||
+                        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo ullam vero tempore aspernatur assumenda, laboriosam alias ad quisquam veniam quibusdam."
+                    }
+                    image={data.image || "/sandip.jpeg"}
+                    job={data.mainSkill || "none"}
+                    name={data.name || "*your name*"}
                 />
             </div>
         </div>

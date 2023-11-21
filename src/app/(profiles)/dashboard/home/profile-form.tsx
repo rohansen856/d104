@@ -101,6 +101,7 @@ interface ProfileFormProps {
     id: string
     data: {
         id: string
+        name: string | null
         bio: string | null
         mainSkill: string | null
         secSkills: string[]
@@ -114,7 +115,7 @@ export function ProfileForm({ id, data }: ProfileFormProps) {
         mainSkill: string
         secSkills: string[]
     }>({
-        name: data.id,
+        name: data.name || "your name",
         bio: "",
         mainSkill: "c",
         secSkills: [],
@@ -134,8 +135,6 @@ export function ProfileForm({ id, data }: ProfileFormProps) {
     })
 
     async function onSubmit(data: ProfileFormValues) {
-        console.log(user)
-        return
         const retData = await axios.patch(
             absoluteUrl(`/api/profile/home/${id}`),
             {

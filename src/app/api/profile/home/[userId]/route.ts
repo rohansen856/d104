@@ -32,11 +32,6 @@ export async function POST(
         // Update the user.
         const data = await db.insert(profile).values({
             id: session.user.id,
-            name: payload.name,
-            image: payload.image,
-            mainSkill: payload.mainSkill,
-            secSkills: payload.secSkills as string[],
-            social: payload.social as string[],
         })
 
         return new Response(JSON.stringify(data), { status: 200 })
@@ -105,7 +100,7 @@ export async function GET(
                 id: payload,
             })
 
-        return new Response(JSON.stringify(data), { status: 200 })
+        return new Response(null, { status: 200 })
     } catch (error) {
         if (error instanceof z.ZodError) {
             return new Response(JSON.stringify(error.issues), { status: 422 })
