@@ -1,10 +1,13 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
+import { useRouter } from "next/navigation"
+import { HomeDataProps } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons"
 import axios from "axios"
-import { useFieldArray, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import * as z from "zod"
 
 import { absoluteUrl, cn } from "@/lib/utils"
@@ -43,6 +46,7 @@ import {
 } from "@/components/ui/popover"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/use-toast"
+import { UploadImageButton } from "@/components/uploadthing-button"
 
 const skills = [
     {
@@ -92,38 +96,24 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>
 
-// This can come from your database or API.
-const defaultValues: Partial<ProfileFormValues> = {
-    bio: "I own a computer.",
-}
-
 interface ProfileFormProps {
     id: string
-    data: {
-        id: string
-        name: string | null
-        bio: string | null
-        mainSkill: string | null
-        secSkills: string[]
-    }
+    data: HomeDataProps
 }
 
 export function ProfileForm({ id, data }: ProfileFormProps) {
-    const [user, setUser] = useState<{
-        name: string
-        bio: string
-        mainSkill: string
-        secSkills: string[]
-    }>({
+    const router = useRouter()
+
+    const [user, setUser] = useState<Omit<HomeDataProps, "id">>({
         name: data.name || "your name",
-        bio: "",
-        mainSkill: "c",
-        secSkills: [],
+        image: data.image,
+        bio: data.bio,
+        mainSkill: data.mainSkill,
+        secSkills: data.secSkills,
     })
 
     const form = useForm<ProfileFormValues>({
         resolver: zodResolver(profileFormSchema),
-        defaultValues,
         mode: "onChange",
         values: {
             name: user.name,
@@ -145,7 +135,7 @@ export function ProfileForm({ id, data }: ProfileFormProps) {
             title: "Success!!!",
             description: "Profile Successfully updated.",
         })
-        console.log(retData)
+        router.refresh()
     }
 
     return (
@@ -160,7 +150,10 @@ export function ProfileForm({ id, data }: ProfileFormProps) {
                         className="w-[350px] max-w-[95vh] space-y-3 px-2"
                     >
                         <div className="flex w-full">
-                            <div className="m-auto h-48 w-48 cursor-pointer rounded-full bg-secondary"></div>
+                            <div className="relative m-auto flex h-48 w-48 cursor-pointer justify-center overflow-hidden rounded-full bg-secondary">
+                                <Image src={"/sandip.jpeg"} alt="sdp" fill />
+                                <UploadImageButton className="absolute z-20 place-self-end rounded-full" />
+                            </div>
                         </div>
                         <FormField
                             control={form.control}

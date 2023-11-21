@@ -74,6 +74,7 @@ export const profile = pgTable("profile", {
         .references(() => users.id, { onDelete: "cascade" }),
     name: text("name"),
     image: text("image"),
+    bio: text("bio"),
     mainSkill: text("main_skill"),
     secSkills: json("secondary_skills").$type<string[]>(),
     social: json("social").$type<string[]>(),

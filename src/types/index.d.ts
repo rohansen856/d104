@@ -1,6 +1,7 @@
 import { User } from "@prisma/client"
 import type { Icon } from "lucide-react"
 
+import { insertProfileSchema } from "@/lib/validation"
 import { Icons } from "@/components/icons"
 
 export type NavItem = {
@@ -63,3 +64,13 @@ export type UserSubscriptionPlan = SubscriptionPlan &
         stripeCurrentPeriodEnd: number
         isPro: boolean
     }
+
+export type HomeDataProps = insertProfileSchema.shape
+// {
+//     id: string
+//     name: string | null
+//     image: string | null
+//     mainSkill: string | null
+//     secSkills: string[]
+//     bio: string | null
+// }

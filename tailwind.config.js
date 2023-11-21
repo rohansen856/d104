@@ -1,7 +1,9 @@
+import { withUt } from "uploadthing/tw"
+
 const { fontFamily } = require("tailwindcss/defaultTheme")
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+module.exports = withUt({
     content: [
         "./src/app/**/*.{ts,tsx}",
         "./src/components/**/*.{ts,tsx}",
@@ -81,4 +83,4 @@ module.exports = {
         require("tailwindcss-animate"),
         require("@tailwindcss/typography"),
     ],
-}
+})

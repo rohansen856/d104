@@ -65,6 +65,7 @@ export async function PATCH(
             .set({
                 name: payload.name,
                 image: payload.image,
+                bio: payload.bio,
                 mainSkill: payload.mainSkill,
                 secSkills: payload.secSkills as string[],
                 social: payload.social as string[],
@@ -100,7 +101,7 @@ export async function GET(
                 id: payload,
             })
 
-        return new Response(null, { status: 200 })
+        return new Response(JSON.stringify(data[0]), { status: 200 })
     } catch (error) {
         if (error instanceof z.ZodError) {
             return new Response(JSON.stringify(error.issues), { status: 422 })

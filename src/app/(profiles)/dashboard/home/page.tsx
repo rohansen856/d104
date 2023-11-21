@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation"
+import { HomeDataProps } from "@/types"
 import axios from "axios"
 
 import { auth } from "@/lib/auth"
@@ -7,7 +8,7 @@ import { Home } from "@/components/profile/home-1"
 
 import { ProfileForm } from "./profile-form"
 
-async function homeData(id: string) {
+async function homeData(id: string): HomeDataProps {
     const { data } = await axios.get(absoluteUrl(`/api/profile/home/${id}`))
     return data
 }
@@ -17,21 +18,14 @@ export default async function SettingsProfilePage() {
     if (!session?.user || !session.user.id)
         return redirect(absoluteUrl("/login"))
 
-    const data = (await homeData(session.user.id)) as {
-        id: string
-        name: string | null
-        image: string | null
-        mainSkill: string | null
-        secSkills: string[]
-        bio: string | null
-    }
+    const data = await homeData(session.user.id)
 
     return (
         <div className="flex w-full flex-col items-center justify-center">
             <div>
                 <ProfileForm id={session.user.id} data={data} />
             </div>
-            <div className="m-2 border border-secondary">
+            <div className="m-2 w-full border border-secondary">
                 <Home
                     description={
                         data.bio ||

@@ -46,10 +46,10 @@ export default function DashboardPage() {
                                 <TabsTrigger value="overview">
                                     Overview
                                 </TabsTrigger>
-                                <TabsTrigger value="friends" >
+                                <TabsTrigger value="friends">
                                     Friends
                                 </TabsTrigger>
-                                <TabsTrigger value="notifications" >
+                                <TabsTrigger value="notifications">
                                     Notifications
                                 </TabsTrigger>
                             </div>
@@ -59,7 +59,7 @@ export default function DashboardPage() {
                             </div>
                         </TabsList>
                         <TabsContent value="overview" className="space-y-4">
-                            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
                                 <Card>
                                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                         <CardTitle className="text-sm font-medium">
