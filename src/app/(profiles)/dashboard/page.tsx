@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CalendarDateRangePicker } from "@/components/date-range-picker"
 import { Overview } from "@/components/overview"
 import { RecentViews } from "@/components/recent-views"
+import { LangGraph } from "@/components/lang-graph"
 
 export const metadata: Metadata = {
     title: "Dashboard",
@@ -55,7 +56,6 @@ export default function DashboardPage() {
                             </div>
                             <div className="flex items-center space-x-2">
                                 <CalendarDateRangePicker />
-                                <Button>Download</Button>
                             </div>
                         </TabsList>
                         <TabsContent value="overview" className="space-y-4">
@@ -180,12 +180,7 @@ export default function DashboardPage() {
                             </div>
                             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
                                 <Card className="col-span-4">
-                                    <CardHeader>
-                                        <CardTitle>Overview</CardTitle>
-                                    </CardHeader>
-                                    <CardContent className="pl-2">
-                                        <Overview />
-                                    </CardContent>
+                                    <Overview />
                                 </Card>
                                 <Card className="col-span-3">
                                     <RecentViews />
