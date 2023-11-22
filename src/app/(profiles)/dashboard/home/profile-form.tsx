@@ -152,7 +152,11 @@ export function ProfileForm({ id, data }: ProfileFormProps) {
                         <div className="flex w-full">
                             <div className="relative m-auto flex h-48 w-48 cursor-pointer justify-center overflow-hidden rounded-full bg-secondary">
                                 <Image src={"/sandip.jpeg"} alt="sdp" fill />
-                                <UploadImageButton className="absolute z-20 place-self-end rounded-full" />
+                                <UploadImageButton
+                                    id={id}
+                                    data={user}
+                                    className="absolute z-20 place-self-end rounded-full"
+                                />
                             </div>
                         </div>
                         <FormField

@@ -22,10 +22,12 @@ export default function RegisterPage() {
             >
                 Login
             </Link>
-            <div className="hidden h-full items-center justify-center bg-muted lg:flex flex-col" >
-                <span className="text-3xl font-extrabold" >Welcome!</span>
+            <div className="hidden h-full flex-col items-center justify-center bg-muted lg:flex">
+                <span className="text-3xl font-extrabold">Welcome!</span>
                 <br></br>
-                <span className="text-xl font-semibold">Delighted to have you here.</span>
+                <span className="text-xl font-semibold">
+                    Delighted to have you here.
+                </span>
             </div>
             <div className="lg:p-8">
                 <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">

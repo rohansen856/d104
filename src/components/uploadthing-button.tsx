@@ -1,20 +1,46 @@
 "use client"
 
-import { UploadButton } from "@/lib/uploadthing"
+import { useRouter } from "next/navigation"
+import { HomeDataProps } from "@/types"
+import axios from "axios"
 
-export function UploadImageButton({ className }: { className: string }) {
+import { UploadButton } from "@/lib/uploadthing"
+import { absoluteUrl } from "@/lib/utils"
+import { toast } from "@/components/ui/use-toast"
+
+export function UploadImageButton({
+    id,
+    data,
+    className,
+}: {
+    id: string
+    data: HomeDataProps
+    className: string
+}) {
+    const router = useRouter()
+    async function uploadImg(data: HomeDataProps, image: string, id: string) {
+        const res = await axios.patch(absoluteUrl(`/api/profile/home/${id}`), {
+            data: { ...data, image, id },
+        })
+        res.status < 300 && router.refresh()
+    }
     return (
         <UploadButton
             className={className}
             endpoint="imageUploader"
-            onClientUploadComplete={(res) => {
-                // Do something with the response
-                console.log("Files: ", res)
-                alert("Upload Completed")
+            onClientUploadComplete={async (res) => {
+                await uploadImg(data, res[0].url, id)
+                toast({
+                    title: "Success!!!",
+                    description: "Profile Successfully updated.",
+                })
             }}
             onUploadError={(error: Error) => {
-                // Do something with the error.
-                alert(`ERROR! ${error.message}`)
+                console.log(error)
+                toast({
+                    title: "Upload Failed!",
+                    description: "Sorry there was an error.",
+                })
             }}
             appearance={{
                 button: "bg-secondary",
